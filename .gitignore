@@ -1,0 +1,15 @@
+# R History and Data
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Data folders 
+01-data_raw/*
+!01-data_raw/.gitkeep
+02-data_preprocessed/*
+!02-data_preprocessed/.gitkeep
+
+# Mac OS folder attributes
+.DS_Store
