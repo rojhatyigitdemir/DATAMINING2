@@ -49,11 +49,11 @@ $EV = \sum_{i=1}^{n} (P_{dip\_i} \times V_i) + (P_{mid} \times V_{mid}) + \sum_{
 
 ---
 
-## 📈 5. İstatistiksel Bulgular ve Regresyon Analizi
+## 📈 5. Statistical Results and Regression Analysis 
 
-Gecikme (Lag) değişkenlerinin fiyat üzerindeki etkisini test etmek için OLS (Ordinary Least Squares) yöntemiyle Çoklu Doğrusal Regresyon uygulanmıştır.
+To test the effect of LAG variables on price, multiple linear regression was performed using the Ordinary Least Squares method.
 
-| Değişken | Tahmin Edilen Katsayı (Estimate) | Standart Hata | t-değeri | p-değeri (Pr>\|t\|) |
+| Variable | Estimate | Standart Error | t-Value | p-Value (Pr>\|t\|) |
 | :--- | :--- | :--- | :--- | :--- |
 | **(Intercept)** | 8.331e+04 | 1.067e+04 | 7.810 | 4.8e-06 *** |
 | **EV_Lag_1** | 8.131e-02 | 8.757e-02 | 0.928 | 0.371 |
@@ -61,26 +61,29 @@ Gecikme (Lag) değişkenlerinin fiyat üzerindeki etkisini test etmek için OLS 
 | **EV_Lag_7** | -1.135e-01 | 6.880e-02 | -1.649 | 0.125 |
 | **Days_to_Exp** | 1.748e+02 | 1.581e+02 | 1.105 | 0.291 |
 
-* **Model Performansı:** `Multiple R-squared: 0.3421`. Model, fiyat varyansının yaklaşık %34'ünü açıklamaktadır.
-* **Korelasyon:** Spot fiyat ile eşzamanlı EV arasında orta-güçlü düzeyde (**r = 0.547**) pozitif korelasyon bulunmuştur.
-* **EMH Doğrulaması:** $H_2$ hipotezimiz doğrulanmıştır. `EV_Lag_1`, `EV_Lag_3` ve `EV_Lag_7` değişkenlerinin p-değerleri > 0.05'tir. Bu durum, geçmiş beklentilerin bugünkü anlık fiyatı açıklamakta yetersiz kaldığını ve Etkin Piyasalar Hipotezi'nin kripto tahmin piyasalarında da geçerliliğini koruduğunu göstermektedir.
+* **Model Performance:** `Multiple R-squared: 0.3421`. Model explains %34 of price variances.
+* **Correlation:** A moderate positive correlation (**r = 0.547**) was found between the spot price and the EV.
+* **EMH Approvation:** $H_2$ the Hypothesis has approved. `EV_Lag_1`, `EV_Lag_3` ve `EV_Lag_7` variables' t-value> 0.05'tir.This situation demonstrates that past expectations are insufficient to explain today’s spot price and that the Efficient Market Hypothesis remains valid in cryptocurrency prediction markets as well.
+
+
 
 ---
 
-## ⚠️ 6. Araştırma Kısıtları (Limitations)
-Regresyon modelinde serbestlik derecesinin (Degrees of Freedom = 12) düşük olmasının ana sebebi örneklem kısıtıdır (Sample Size). 7 günlük gecikme (Lag 7) analizi, zaman serisinin ilk 7 günlük verisinin silinmesine (NA) yol açmıştır. Gelecekteki araştırmaların, 6 aylık veya 1 yıllık daha geniş veri setleri ile ARIMA veya VAR (Vector Autoregression) modelleri kullanılarak yapılması literatüre katkı sağlayacaktır.
+## ⚠️ 6. Limitations
+The regression model has 12 degrees of freedom. The main reason for this low value is the sample restriction. The 7 days lag analysis resulted in the removal of the first 7 days of data from the time series. Future research utilizing ARIMA or Vector Autoregression models with broader datasets spanning 6 months or 1 year would contribute to the literature.
+
 
 ---
 
-## 📁 7. Proje Dizin Yapısı (Repository Structure)
+## 📁 7. Repository Structure
 
-Bu proje, veri biliminin en iyi uygulamaları (best practices) gözetilerek modüler bir yapıda tasarlanmıştır:
+This project structured regarding to best practices applications:
 
 ```text
 📂 project-root/
-├── 📁 01-data_raw/             # API'lerden çekilen ham, işlenmemiş JSON/CSV verileri
-├── 📁 02-data_preprocessed/    # Temizlenmiş, birleştirilmiş ve analize hazır EV tabloları
-├── 📁 03-scripts/              # Tüm R veri madenciliği, ön işleme ve analiz kodları
-├── 📁 04-results/              # İstatistiksel modellerin çıktıları (Regresyon tablosu)
-├── 📁 05-plots/                # Keşifsel veri analizi (EDA) grafikleri
-└── 📄 README.md                # Proje dokümantasyonu
+├── 📁 01-data_raw/             # Raw, unprocessed JSON/CSV data retrieved from APIs
+├── 📁 02-data_preprocessed/    # Cleaned, unified, ready EV tables
+├── 📁 03-scripts/              # R based data mining, data processessing and code chunks
+├── 📁 04-results/              # Regression Table
+├── 📁 05-plots/                # Explaretory Data Analysis(EDA) Graphics
+└── 📄 README.md                # Documentation
