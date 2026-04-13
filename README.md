@@ -26,25 +26,26 @@ The primary objective of the project is to measure the rate at which market expe
 
 ### 3.1. Data Science
 * **Spot Price:** Yahoo Finance API (`quantmod` Library) daily BTC closing prices source.
-* **Tahmin Verisi:** Polymarket'in çift katmanlı API mimarisi kullanılarak çekilmiştir:
-  * *Gamma API:* Hedef sözleşmelerin (Market IDs) benzersiz `clobTokenIds` değerlerini ayrıştırmak için.
-  * *CLOB API (Central Limit Order Book):* Token ID'ler üzerinden `prices-history` endpoint'i ile tarihsel günlük kapanış olasılıklarını çekmek için.
+* **Forecasting** Extracted using Polymarket’s API architecture:
+  * *Gamma API:*To extract the unique `clobTokenIds` values of Market IDs.
+  * *CLOB API (Central Limit Order Book):* To retrieve historical daily closing probabilities using the `prices-history` endpoint via token IDs.
 
-### 3.2. Tam Olasılık Dağılımı ve EV Modellemesi
-Piyasanın genel beklentisini tek bir sayıya indirgemek için tüm sözleşme kademeleri (Tiers) analiz edilmiştir. Sağ ve sol kuyruk (left/right tail) risklerini hesaplamak amacıyla formülizasyon şu şekilde kurulmuştur:
+### 3.2. Full Probability Distribution and EV Modeling
+
+All contract tiers were analyzed to distill market expectations into a single figure. The formula was constructed:
 
 $EV = \sum_{i=1}^{n} (P_{dip\_i} \times V_i) + (P_{mid} \times V_{mid}) + \sum_{j=1}^{m} (P_{reach\_j} \times V_j)$
 
-*Burada $P$, hesaplanan marjinal olasılığı; $V$ ise hedef fiyat kademesini temsil etmektedir.*
+* $P$ represents the calculated marginal probability, and $V$ represents the target price level.*
 
 ---
 
-## 📊 4. Keşifsel Veri Analizi (Exploratory Data Analysis)
+## 📊 4. Exploratory Data Analysis
 
-![BTC vs Polymarket Tahmini](05-plots/01_btc_vs_ev_timeseries.png)
-*(Not: Repo klonlandıktan sonra ilgili grafik `05-plots` klasöründe incelenebilir.)*
+![BTC Real Price vs Polymarket Prediction](05-plots/01_btc_vs_ev_timeseries.png)
 
-**Görsel Yorumu:** Zaman serisi analizinde, vade başlangıcında (düşük likidite ve yüksek spekülasyon dönemi) EV çizgisinin oldukça volatil olduğu, ancak vade sonuna yaklaştıkça Polymarket katılımcılarının tahminlerinin hızla gerçek BTC spot fiyatına yakınsadığı ($H_1$ kabul) gözlemlenmiştir.
+**Graph Comment:** Looking at the time series, we see that the EV line is quite volatile at the beginning of the contract period (a period of low liquidity and high speculation). However, as the contract period nears its end, we observe that Polymarket participants’ predictions rapidly converge toward the actual BTC spot price (assuming $H_1$).
+
 
 ---
 
