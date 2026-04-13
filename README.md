@@ -14,18 +14,18 @@ Price formation in markets revolves around information asymmetry and market effi
 
 ---
 
-## 🎯 2. Araştırma Amacı ve Hipotezler
-Projenin temel amacı, piyasa beklentilerinin zaman içinde rasyonelleşme hızını ve öngörücü (predictive) gücünü ölçmektir.
+## 🎯 2. Research Goals and Hypothesis 
+The primary objective of the project is to measure the rate at which market expectations rationalize over time and their predictive power.
 
-* **$H_1$:** Vade sonuna kalan süre ($t \rightarrow 0$) azaldıkça, tahmin piyasalarındaki Beklenen Değer (EV) ile Gerçek Spot Fiyat arasındaki makas daralır (Yakınsama Hipotezi).
-* **$H_2$:** Gecikmeli tahminlerin (t-1, t-3, t-7) bugünkü spot fiyatı açıklama gücü düşüktür; piyasa anlık bilgiyi hızla fiyatlar.
+* **$H_1$:** As the time to maturity ($t \rightarrow 0$) decreases, the spread between the Expected Value (EV) in prediction markets and the actual spot price narrows (Convergence Hypothesis).
+* **$H_2$:** The explanatory power of lagged forecasts (t-1, t-3, t-7) for today’s spot price is low; the market quickly prices in real-time information.
 
 ---
 
-## ⚙️ 3. Metodoloji ve Veri Madenciliği (Data Mining)
+## ⚙️ 3. Methodological Data Mining
 
-### 3.1. Veri Kaynakları
-* **Spot Fiyat:** Yahoo Finance API (`quantmod` kütüphanesi) üzerinden çekilen günlük BTC kapanış fiyatları.
+### 3.1. Data Science
+* **Spot Price:** Yahoo Finance API (`quantmod` Library) daily BTC closing prices source.
 * **Tahmin Verisi:** Polymarket'in çift katmanlı API mimarisi kullanılarak çekilmiştir:
   * *Gamma API:* Hedef sözleşmelerin (Market IDs) benzersiz `clobTokenIds` değerlerini ayrıştırmak için.
   * *CLOB API (Central Limit Order Book):* Token ID'ler üzerinden `prices-history` endpoint'i ile tarihsel günlük kapanış olasılıklarını çekmek için.
